@@ -4,14 +4,14 @@ package sofrative.login;
  */
 public class LoginData {
 
-   private String id; //아이디
-   private String password; //비밀번호
-   
+   private String id;
+   private String password;
+
    public LoginData(String id, String password) {
       this.id = id;
       this.password = password;
    }
-   
+
    public String getId() {
       return id;
    }
@@ -24,5 +24,5 @@ public class LoginData {
    public void setPassword(String password) {
       this.password = password;
    }
-   
+
 }

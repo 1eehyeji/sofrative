@@ -25,11 +25,11 @@ public class MessageDB {
 
 		Connection connection = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null; 
+		ResultSet rs = null;
 
 		Connection connection2 = null;
 		PreparedStatement stmt2 = null;
-		ResultSet rs2 = null; 
+		ResultSet rs2 = null;
 
 		int check = 0;
 		//1. 로그인 여부 확인하고 2.메세지 보내기
@@ -150,7 +150,7 @@ public class MessageDB {
 	public int selectMessage(String id) throws SQLException { //메세지 개수 리턴
 		Connection connection = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null; 
+		ResultSet rs = null;
 		int result = 0;
 		String query = "select count(*) from stumessage where memberid='" + id + "'";
 
@@ -161,13 +161,8 @@ public class MessageDB {
 			rs = stmt.executeQuery();
 
 			rs.next();
-			
-			
-			
-			result =rs.getInt(1); //총 글의 갯수를 리턴하는 메소드 
-			
-			
 
+			result =rs.getInt(1); //총 글의 갯수를 리턴하는 메소드
 		}
 		catch (SQLException ex) {
 			System.out.print(ex.getMessage());
@@ -179,13 +174,13 @@ public class MessageDB {
 		}
 		return result;
 	}
-	
+
 	public void deleteMessageAll(String id) throws SQLException{
 		Connection conn = DBUtil.getConnection();
 		Statement stmt = null;
-		
+
 		String query = "delete from stumessage where memberid='" + id + "'";
-		
+
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
@@ -194,5 +189,5 @@ public class MessageDB {
 			DBUtil.close(stmt);
 		}
 	}
-	
+
 }

@@ -27,7 +27,7 @@
 			ResultSet rs = null;
 			Connection conn = DBUtil.getConnection();
 
-			try (PreparedStatement pstmt = conn.prepareStatement(//and department = ?
+			try (PreparedStatement pstmt = conn.prepareStatement(
 					"select name, memberid from member where login = ? and department = ? ")) {
 				pstmt.setInt(1, 1);
 				pstmt.setString(2, dept);

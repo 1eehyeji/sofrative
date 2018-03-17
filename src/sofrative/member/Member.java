@@ -139,17 +139,6 @@ public class Member {
          return true;
       }
       return false;
-      /*
-      for(int i=0;i<password.length();i++){
-         char ch_pw =password.charAt(i);
-
-         if(!((ch_pw>='a'&& ch_pw<='z')||(ch_pw>='0'&& ch_pw<='9'))){
-            return true;
-         }
-
-      }
-       */
-
    }
    public boolean cpregEngNum(){//confirmPassword
 
@@ -159,16 +148,6 @@ public class Member {
          return true;
       }
       return false;
-      /*
-      for(int i=0;i<confirmPassword.length();i++){
-         char ch_cpw =confirmPassword.charAt(i);
-         if(!(ch_cpw>='a'&& ch_cpw<='z'&&(ch_cpw>='0'&& ch_cpw<='9'))){
-            return true;
-         }else
-            return false;
-      }
-      return false;
-       */
    }
    //유효성 검사(공백 사용하지 않기)
    public boolean ngap(){//이름

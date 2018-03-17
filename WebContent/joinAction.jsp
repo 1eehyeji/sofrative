@@ -18,8 +18,6 @@
       String email = request.getParameter("email") + "@";
       String url= request.getParameter("url");
       
-      //String realemail=email+url;
-      
       Member member = new Member(
             request.getParameter("id"), request.getParameter("password"),
             request.getParameter("name"), request.getParameter("confirmPassword"),

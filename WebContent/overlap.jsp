@@ -10,10 +10,8 @@
 			&& request.getParameter("id").length() <= 12) {
 
 		if (dao.overlapId(request.getParameter("id")) == 1) {
-			//session.setAttribute("id", request.getParameter("id"));
 			out.print("1");
 		} else {
-			//session.setAttribute("id", request.getParameter("id"));
 			out.print("0");
 		}
 	} else {

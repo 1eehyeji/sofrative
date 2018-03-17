@@ -22,15 +22,13 @@
 	<div style="text-align: center; margin: 100px; 0px; 0px; 0px; ">
 		<p style="font-size: 25pt; color: #89D7C0; font-weight: bold;">미디어컨텐츠융합
 			자율학부</p>
-
-
 		<%
 			String dept = "미디어컨텐츠융합 자율학부";
 
 			ResultSet rs = null;
 			Connection conn = DBUtil.getConnection();
 
-			try (PreparedStatement pstmt = conn.prepareStatement(//and department = ?
+			try (PreparedStatement pstmt = conn.prepareStatement(
 					"select name, memberid from member where login = ? and department = ? ")) {
 				pstmt.setInt(1, 1);
 				pstmt.setString(2, dept);
@@ -46,7 +44,6 @@
 		<br>
 
 		<%
-			//session.setAttribute("NAME", rs.getString("name"));
 				}
 			}
 

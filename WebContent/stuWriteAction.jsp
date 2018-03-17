@@ -26,9 +26,8 @@
          
          if((mdb.loginValue(memberid)).equals("1")){//교수님이 로그인이 되어있음 
             
-        	 if(reg == false){ //교수님 로그인 + 좋은 메세지
+        	 if(reg == false){ //교수님 로그인 + 조건에 맞는 메세지 내용
                result = mdb.messageInsert(memberid, message);
-            //전송되었습니다.
 %>
 		<script>
       		alert("전송 되었습니다.");
@@ -36,7 +35,6 @@
 		</script>
 <%   
      		} else {
-            //메세지를 다시 입력해주세요
 %>
 		<script>
  			alert("메세지를 다시 입력해주세요.");
@@ -44,8 +42,7 @@
 		</script>
 <%
         	}
-        } else {
-            //현재 교수님이 로그아웃 중입니다. 
+        } else { 
 %>
 		<script>
       		alert("현재 해당 교수님이 로그아웃 중입니다.");  
