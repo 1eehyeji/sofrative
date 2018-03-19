@@ -45,7 +45,7 @@ body{
 <input type="submit" value="LOGIN" style="width:100px; height:40px; background-color:#F4C290; font-size:22px;
                border-radius:15px; border-color:#F4C290; margin-top:20px; font-family:'jeju gothic', serif">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
-<input type="button" value="JOIN" onclick="location.href='joinForm.jsp'"
+<input type="button" value="JOIN" onclick="location.href='profRegisterForm.jsp'"
    style="width:100px; height:40px; background-color:#F4C290; font-size:22px;
                border-radius:15px; border-color:#F4C290; margin-top:20px; font-family:'jeju gothic', serif">
 </div>

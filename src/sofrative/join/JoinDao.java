@@ -14,6 +14,7 @@ import sofrative.member.Member;
 
 public class JoinDao {
 
+	private final String PROF_PW = "1234skhu";
    public static JoinDao instance = new JoinDao();
 
    public static JoinDao getInstance() {
@@ -57,4 +58,14 @@ public class JoinDao {
       }
       return check;
    }
+   
+   public int checkProf(String pw) {
+	   if(PROF_PW.equals(pw)) { 
+		   return 1;
+	   }
+	   else {
+		   return -1;
+	   }
+   }
+   
 }
