@@ -3,9 +3,9 @@
  * isEmpty 메소드
  * 비밀번호 확인 메소드
  */
-package sofrative.member;
+package sfr.user;
 
-public class Member {
+public class UserVO {
 
    private String name;
    private String id;
@@ -17,7 +17,12 @@ public class Member {
    private String phone;
    private int login;
 
-   public Member(String id, String password, String name,
+   
+   public UserVO() {
+	   
+   }
+   
+   public UserVO(String id, String password, String name,
          String confirmPassword, String department,
          String email, String url, String phone, int login) {
       this.name = name;

@@ -2,7 +2,7 @@
  * 커넥션 연결 코드
  * close 코드
  */
-package sofrative.DB;
+package sfr.DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
