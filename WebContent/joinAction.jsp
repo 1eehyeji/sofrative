@@ -24,115 +24,115 @@
             request.getParameter("department"), email, url,
             request.getParameter("phone"), 0);
       
-      JoinDao dao = new JoinDao();
+      UserDAO dao = new UserDAO();
       
       
-      if (member.nameIsEmpty()) {
+      if (user.nameIsEmpty()) {
    %>
    <script>
             alert("이름을 입력해주세요.");
             history.go(-1);
          </script>
    <%
-      }else if(member.ngap()){//이름에 공백 사용하지 않기
+      }else if(user.ngap()){//이름에 공백 사용하지 않기
    %>
    <script>
             alert("이름에 공백을 사용할 수 없습니다.");
             history.go(-1);
          </script>
    <%
-      }else if(member.nlength()){//이름 길이 체크 (2자이상)
+      }else if(user.nlength()){//이름 길이 체크 (2자이상)
    %>
    <script>
             alert("이름을 2자이상 입력해주세요.");
             history.go(-1);
          </script>
    <%
-      }else if(member.idIsEmpty()) {
+      }else if(user.idIsEmpty()) {
    %>
    <script>
             alert("아이디를 입력하세요.");
             history.go(-1);
          </script>
    <%
-      }else if(member.idregEngNum()){ //영소문자,숫자만 허용
+      }else if(user.idregEngNum()){ //영소문자,숫자만 허용
    %>
    <script>
             alert("아이디는 소문자 또는 숫자 입력가능합니다.");
             history.go(-1);
          </script>
    <%      
-      }else if(member.idgap()){//공백 사용하지 않기
+      }else if(user.idgap()){//공백 사용하지 않기
    %>
    <script>
             alert("아이디에 공백을 사용할 수 없습니다.");
             history.go(-1);
          </script>
    <%         
-      }else if(member.idlength()){//길이 체크
+      }else if(user.idlength()){//길이 체크
    %>
    <script>
             alert("아이디를 5~12자까지 입력해주세요.");
             history.go(-1);
          </script>
    <%
-      }else if(member.passwordIsEmpty()){
+      }else if(user.passwordIsEmpty()){
    %>
    <script>
             alert("비밀번호를 입력하세요.");
             history.go(-1);
          </script>
    <%
-      }else if(member.pwregEngNum()){
+      }else if(user.pwregEngNum()){
    %>
    <script>
             alert("비밀번호는 소문자+숫자만 입력가능합니다.");
             history.go(-1);
          </script>
    <%
-      }else if(member.pwgap()){
+      }else if(user.pwgap()){
    %>
    <script>
             alert("비밀번호에 공백을 사용할 수 없습니다.");
             history.go(-1);
          </script>
    <% 
-      }else if(member.pwlength()){
+      }else if(user.pwlength()){
    %>
    <script>
             alert("비밀번호를 8~12자까지 입력하세요.");
             history.go(-1);
          </script>
    <%
-      }else if(member.cpregEngNum()){
+      }else if(user.cpregEngNum()){
    %>
    <script>
             alert("비밀번호는 소문자+숫자만 입력가능합니다.");
             history.go(-1);
          </script>
    <%
-      }else if(member.cpwgap()){
+      }else if(user.cpwgap()){
    %>
    <script>
             alert("비밀번호에 공백을 사용할 수 없습니다.");
             history.go(-1);
          </script>
    <%
-      }else if(member.cpwlength()){
+      }else if(user.cpwlength()){
    %>
    <script>
             alert("비밀번호를 8~12자까지 입력해주세요.");
             history.go(-1);
          </script>
    <%
-      }else if(member.urlIsEmpty()){
+      }else if(user.urlIsEmpty()){
    %>
       <script>
             alert("이메일 주소를 선택하세요.");
             history.go(-1);
          </script>
    <%
-      }else if(member.ckphone()){
+      }else if(user.ckphone()){
     %>
        <script>
             alert("올바른 전화번호 양식이 아닙니다.");
@@ -140,7 +140,7 @@
          </script>  
       }
     <%  
-      }else if(member.departmentIsEmpty()){
+      }else if(user.departmentIsEmpty()){
    %>
    <script>
             alert("학부를 선택하세요.");
@@ -148,7 +148,7 @@
          </script>
    <%
       }else {
-         dao.insert(DBUtil.getConnection(), member);
+         dao.insert(DBUtil.getConnection(), user);
    %>
    <script>
             alert("회원가입을 축하합니다!");
