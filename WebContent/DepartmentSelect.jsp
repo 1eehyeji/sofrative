@@ -1,6 +1,5 @@
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="sfr.DB.DBUtil"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="sfr.user.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,18 +17,9 @@ body{
 <body>
 <%
 	//로그인 후 5시간이 지난 멤버는 자동으로 로그아웃
-	String query = "update member set login = 0 where login_time<=date_sub(now(), interval 5 hour)";
-	
-	Connection conn = DBUtil.getConnection();
-	PreparedStatement pstmt = null;
-	
-	try{
-		pstmt = conn.prepareStatement(query);
-		pstmt.executeUpdate();
-	}finally{
-		DBUtil.close(conn);
-		DBUtil.close(pstmt);
-	}
+	UserDAO dao = new UserDAO();
+	dao.autoLogout();
+
 %>
 
 <img src="images/logo.jpg" style="position: absolute; top:0px ;right:10px" width="120px" height="80px"></img>
