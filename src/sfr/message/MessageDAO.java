@@ -19,8 +19,8 @@ public class MessageDAO {
 		return instance;
 	}
 
-	public boolean messageInsert(MessageVO msg) throws Exception{
-		String login = UserDAO.getInstance().loginValue(msg.getMemberid()); //0: 로그아웃 되어있는 상태 1: 로그인이 되어있는 상태
+	public static boolean messageInsert(MessageVO msg) throws Exception{
+		String login = UserDAO.getInstance().loginValue(msg.getMemberid()); //0: 濡쒓렇�븘�썐 �릺�뼱�엳�뒗 �긽�깭 1: 濡쒓렇�씤�씠 �릺�뼱�엳�뒗 �긽�깭
 		String sql ="insert into stuMessage values( ?, now(), ?)";
 
 		if(login.equals("1")) {
@@ -35,7 +35,7 @@ public class MessageDAO {
 		return false;
 	}
 
-	//매개변수로 받은 아이디에 해당하는 교수님 성함을 리턴
+	//留ㅺ컻蹂��닔濡� 諛쏆� �븘�씠�뵒�뿉 �빐�떦�븯�뒗 援먯닔�떂 �꽦�븿�쓣 由ы꽩
 	public String getName(String id) throws Exception {
 		String result = "";
 		String sql = "select * from member where memberid=?";
@@ -52,7 +52,7 @@ public class MessageDAO {
 		}
 	}
 
-	public int selectMessage(String id) throws SQLException { //메세지 개수 리턴
+	public int selectMessage(String id) throws SQLException { //硫붿꽭吏� 媛쒖닔 由ы꽩
 		Connection connection = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -66,7 +66,7 @@ public class MessageDAO {
 			rs = stmt.executeQuery();
 
 			if(rs.next())
-				result =rs.getInt(1); //총 글의 갯수를 리턴하는 메소드
+				result =rs.getInt(1); //珥� 湲��쓽 媛��닔瑜� 由ы꽩�븯�뒗 硫붿냼�뱶
 		}
 		catch (SQLException ex) {
 			System.out.print(ex.getMessage());
@@ -104,7 +104,7 @@ public class MessageDAO {
 		}
 	}
 
-	//메세지 전송 시간 차이가 적은 순서대로 읽어옴
+	//硫붿꽭吏� �쟾�넚 �떆媛� 李⑥씠媛� �쟻�� �닚�꽌��濡� �씫�뼱�샂
 	public List<MessageVO> selectMessageByTime(String id, String pg) throws Exception{
 		String s = "select message, mtime from stumessage where memberid=? order by mtime desc limit @1,5;";
 		String sql = s.replace("@1", pg);

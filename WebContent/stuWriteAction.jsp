@@ -1,8 +1,7 @@
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="sofrative.message.MessageDB"%>
-<%@ page import="java.sql.*"%>
+<%@ page import="sfr.message.*, sfr.user.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,12 +21,19 @@
          String regex = "[ ]+";
          boolean reg = message.matches(regex);
          
-         MessageDB mdb = MessageDB.getInstance();
+         MessageDAO mdao = new MessageDAO();
          
-         if((mdb.loginValue(memberid)).equals("1")){//교수님이 로그인이 되어있음 
+         MessageVO mvo = new MessageVO();
+         
+         UserDAO dao = new UserDAO();
+         
+         
+         if((dao.loginValue(memberid).equals("1"))){//교수님이 로그인이 되어있음 
             
         	 if(reg == false){ //교수님 로그인 + 조건에 맞는 메세지 내용
-               result = mdb.messageInsert(memberid, message);
+                mvo.setMemberid(memberid);
+                mvo.setMessage(message);
+			   result = mdao.messageInsert(mvo);
 %>
 		<script>
       		alert("전송 되었습니다.");

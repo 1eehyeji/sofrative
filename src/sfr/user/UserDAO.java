@@ -10,15 +10,15 @@ import java.util.List;
 import sfr.DB.DBUtil;
 
 public class UserDAO {
-	private final String PROF_PW = "1234skhu";
+	private final static String PROF_PW = "1234skhu";
 	public static UserDAO instance = new UserDAO();
 
 	public static UserDAO getInstance() {
 		return instance;
 	}
 
-	//각 학과에 로그인 상태인 교수님 목록
-	public List<UserVO> getLoginProfListByDept(String dept){
+	//媛� �븰怨쇱뿉 濡쒓렇�씤 �긽�깭�씤 援먯닔�떂 紐⑸줉
+	public static List<UserVO> getLoginProfListByDept(String dept){
 		String s = dept;
 
 		Connection conn = DBUtil.getConnection();
@@ -45,8 +45,8 @@ public class UserDAO {
 		return list;
 	}
 
-	//로그인 상태 확인
-	public String loginValue(String id){
+	//濡쒓렇�씤 �긽�깭 �솗�씤
+	public static String loginValue(String id){
 
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -63,7 +63,7 @@ public class UserDAO {
 			rs = stmt.executeQuery();
 
 			if(rs.next()) {
-				return result = rs.getString("LOGIN"); //로그인되어있으면 1 아니면 0
+				return result = rs.getString("LOGIN"); //濡쒓렇�씤�릺�뼱�엳�쑝硫� 1 �븘�땲硫� 0
 			}
 		}catch (SQLException ex) {
 			System.out.print(ex.getMessage());
@@ -81,38 +81,38 @@ public class UserDAO {
 
 		try (Connection conn =DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setString(1, "0");//id의 LOGIN컬럼의 값을 0으로 변경하겠다.DB에서 0은 F를 나머지 값들은 T로 나타낸다고,,, 아마,, 그랬음,, 
+			pstmt.setString(1, "0");//id�쓽 LOGIN而щ읆�쓽 媛믪쓣 0�쑝濡� 蹂�寃쏀븯寃좊떎.DB�뿉�꽌 0�� F瑜� �굹癒몄� 媛믩뱾�� T濡� �굹���궦�떎怨�,,, �븘留�,, 洹몃옱�쓬,, 
 			pstmt.setString(2, id);
-			int x = -1; //DB쿼리가 실행되었는지 알려주는 변수(1이면 실행된거임.)
-			x = pstmt.executeUpdate();//변경 x에 저장되는 값은 쿼리를 실행했을 때 업데이트(정보가 수정된?)된 컬럼 갯수 (로 알고있음.) 
+			int x = -1; //DB荑쇰━媛� �떎�뻾�릺�뿀�뒗吏� �븣�젮二쇰뒗 蹂��닔(1�씠硫� �떎�뻾�맂嫄곗엫.)
+			x = pstmt.executeUpdate();//蹂�寃� x�뿉 ���옣�릺�뒗 媛믪� 荑쇰━瑜� �떎�뻾�뻽�쓣 �븣 �뾽�뜲�씠�듃(�젙蹂닿� �닔�젙�맂?)�맂 而щ읆 媛��닔 (濡� �븣怨좎엳�쓬.) 
 
-			//(한 개의 수정을 요청했으니까) 요청 된 컬럼 갯수가 1개라면
+			//(�븳 媛쒖쓽 �닔�젙�쓣 �슂泥��뻽�쑝�땲源�) �슂泥� �맂 而щ읆 媛��닔媛� 1媛쒕씪硫�
 			if(x == 1) return true;
 		}
 		return false;
 	}
 
-	// 로그인 창에서 입력받은 아이디와 비밀번호를 검사
-	public int passwordMatching(String id, String pw) throws Exception{
+	// 濡쒓렇�씤 李쎌뿉�꽌 �엯�젰諛쏆� �븘�씠�뵒�� 鍮꾨�踰덊샇瑜� 寃��궗
+	public static int passwordMatching(String id, String pw) throws Exception{
 		String sql = "select * from member where binary(memberid)=?";
 
 		try(Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setString(1, id);
 			try(ResultSet rs = pstmt.executeQuery()){
-				if(!rs.next()) return -1; //입력받은 아이디가 존재하지 않음
+				if(!rs.next()) return -1; //�엯�젰諛쏆� �븘�씠�뵒媛� 議댁옱�븯吏� �븡�쓬
 				else {
 					if(!pw.equals(rs.getString("password"))) {
-						return 0; //비밀번호가 일치하지 않음
+						return 0; //鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�쓬
 					}
-					return 1; // 아이디에 해당하는 비밀번호와 일치
+					return 1; // �븘�씠�뵒�뿉 �빐�떦�븯�뒗 鍮꾨�踰덊샇�� �씪移�
 				}
 			}
 		}
 	}
 
-	// 로그인에 성공하면(passwordMatching 값으로 1이 반환되면)
-	// DB login칼럼을 1로변경, 로그인된 시간을 현재시간으로 변경
+	// 濡쒓렇�씤�뿉 �꽦怨듯븯硫�(passwordMatching 媛믪쑝濡� 1�씠 諛섑솚�릺硫�)
+	// DB login移쇰읆�쓣 1濡쒕�寃�, 濡쒓렇�씤�맂 �떆媛꾩쓣 �쁽�옱�떆媛꾩쑝濡� 蹂�寃�
 	public boolean login(String memberid) throws Exception{
 		String sql = "update member set login=?, login_time=now() where memberid=?";
 
@@ -120,14 +120,14 @@ public class UserDAO {
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, 1);
 			pstmt.setString(2, memberid);
-			int check = pstmt.executeUpdate(); //update된 레코드의 개수
+			int check = pstmt.executeUpdate(); //update�맂 �젅肄붾뱶�쓽 媛쒖닔
 
 			if(check == 1) return true;
 		}
 		return false;
 	}
 
-	//로그인 후 5시간이 지난 회원은 자동 로그아웃
+	//濡쒓렇�씤 �썑 5�떆媛꾩씠 吏��궃 �쉶�썝�� �옄�룞 濡쒓렇�븘�썐
 	public void autoLogout() throws Exception{
 		String sql = "update member set login=0 where login_time<=date_sub(now(), interval 5 hour)";
 		
@@ -137,7 +137,7 @@ public class UserDAO {
 		}
 	}
 	
-	// 회원가입 정보를 DB에 저장
+	// �쉶�썝媛��엯 �젙蹂대�� DB�뿉 ���옣
 	public void insert(Connection conn, UserVO member) throws SQLException{
 		try (PreparedStatement pstmt = conn.prepareStatement(
 				"insert into member values(?,?,?,?,?,?,?,null)")){ 
@@ -152,8 +152,8 @@ public class UserDAO {
 		}
 	}
 
-	// 회원가입시 아이디가 중복인지 확인함
-	public int overlapId(String id) throws SQLException {
+	// �쉶�썝媛��엯�떆 �븘�씠�뵒媛� 以묐났�씤吏� �솗�씤�븿
+	public static int overlapId(String id) throws SQLException {
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -176,8 +176,8 @@ public class UserDAO {
 		return check;
 	}
 
-	// 회원가입시 교수님들만 알고있는 password로 학생이 회원가입을 하지 못하도록 검사
-	public int checkProf(String pw) {
+	// �쉶�썝媛��엯�떆 援먯닔�떂�뱾留� �븣怨좎엳�뒗 password濡� �븰�깮�씠 �쉶�썝媛��엯�쓣 �븯吏� 紐삵븯�룄濡� 寃��궗
+	public static int checkProf(String pw) {
 		if(PROF_PW.equals(pw)) { 
 			return 1;
 		}

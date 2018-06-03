@@ -1,4 +1,4 @@
-<%@page import="sofrative.join.JoinDao"%>
+<%@page import="sfr.user.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,9 +13,7 @@
 
 		String prof_pw = request.getParameter("ProfPw");
 
-		JoinDao profCheck = new JoinDao();
-
-		int result = profCheck.checkProf(prof_pw);
+		int result = UserDAO.checkProf(prof_pw);
 		//result가 -1이면 비번 틀림, 1이면 회원가입창으로 넘어갈 수 있음
 
 		if (result == 1) {
