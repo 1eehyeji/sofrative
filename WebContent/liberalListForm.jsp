@@ -1,8 +1,6 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="sfr.DB.DBUtil,sfr.user.*,java.util.List"%>
 
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
