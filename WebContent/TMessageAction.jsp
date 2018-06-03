@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "sofrative.login.LogoutDB" %>
+<%@ page import = "sfr.user.UserDAO" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,11 +8,11 @@
 <title>Sofrative</title>
 </head>
 <%
-   LogoutDB test = LogoutDB.getInstance();
+   UserDAO user = new UserDAO();
    
    String id = request.getParameter("memberid");
 
-   boolean result = test.logoutCheck(id);
+   boolean result = user.logout(id);
    //true면 LOGIN컬럼 값이 0으로 바뀌었다는 의미.
    
    if(result==false){

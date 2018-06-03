@@ -3,9 +3,9 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="sofrative.DB.DBUtil"%>
+<%@page import="sfr.DB.DBUtil"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="sofrative.message.MessageDB"%>
+<%@page import="sfr.message.MessageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -59,7 +59,7 @@
          <% 
             
             SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-            MessageDB msgNum = new MessageDB();
+            MessageDAO msgNum = new MessageDAO();
 
             int messageCount = msgNum.selectMessage(id);
 
