@@ -113,7 +113,7 @@ public class UserDAO {
 
 	// 濡쒓렇�씤�뿉 �꽦怨듯븯硫�(passwordMatching 媛믪쑝濡� 1�씠 諛섑솚�릺硫�)
 	// DB login移쇰읆�쓣 1濡쒕�寃�, 濡쒓렇�씤�맂 �떆媛꾩쓣 �쁽�옱�떆媛꾩쑝濡� 蹂�寃�
-	public boolean login(String memberid) throws Exception{
+	public static boolean login(String memberid) throws Exception{
 		String sql = "update member set login=?, login_time=now() where memberid=?";
 
 		try(Connection conn = DBUtil.getConnection();

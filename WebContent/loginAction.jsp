@@ -21,7 +21,9 @@
 	</script>
 <% 
    }else if(result == 1){ 
-
+	   
+	   UserDAO.login(id);
+	
 %>
   	<script>
   		alert("로그인되었습니다!");

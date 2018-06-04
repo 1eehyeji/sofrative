@@ -1,6 +1,7 @@
 /*
- * 커넥션 연결 코드
- * close 코드
+ * getConnection()메소드 : 커넥션 연결을 위한 메소드  
+ * close() 메소드 : close를 위한 메소드
+ * rollback() 메소드 : rollback을 위한 메소드
  */
 package sfr.DB;
 
@@ -17,10 +18,10 @@ public class DBUtil {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/sofrative_DB?" +
+			String url = "jdbc:mysql://localhost:3306/sofrative?" +
 					"useUnicode=true&characterEncoding=utf8";
-			String user = "sfr";
-			String password = "0000";
+			String user = "root";
+			String password = "1234";
 			conn = DriverManager.getConnection(url, user, password);
 		}catch(ClassNotFoundException e) {
 			System.out.println("드라이버가 없습니다.");
